@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block trevers %}
+<a href="{% url 'home' %}" style="text-decoration: none;" >Back to home page</a></li>
+{% endblock %}
+
+{% block content %}
+    
+    
+    <nav class="nav">
+        <a href="{% url 'news_create' %}" style="text-decoration: none; padding-left: 40px;" >Create News</a>
+        <h2 style="text-decoration: none; padding-left: 20px;">News List</h2>
+    </nav>
+    
+    {% for news in news %}
+    <ul>
+        <li><h3>{{ news.title }}( {{ news.pub_date }})</h3></li>   
+        <h4>{{ news.content }}</h4>  
+    </ul>
+        <a href="{% url 'news_update' news.pk %}" style="text-decoration: none; padding-left: 20px;" >Update</a>
+        <a href="{% url 'news_delete' news.pk %}" style="text-decoration: none; padding-left: 20px;" onclick="return confirm('Are you sure?');">Delete</a>
+    {% endfor %}
+{% endblock %}
